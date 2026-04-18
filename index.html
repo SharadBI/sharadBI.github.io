@@ -266,36 +266,7 @@ h1{font-size:36px}
 </div>
 </section>
 
-<section id="chat">
-<div class="container">
-<div class="chat-wrap">
-  <div class="chat-intro">
-    <div class="section-tag" style="text-align:center">AI Assistant</div>
-    <div class="section-title" style="text-align:center">Ask about Sharad</div>
-    <p style="color:var(--muted);margin-top:8px">Get instant answers about Sharad's expertise, availability, and past work.</p>
-  </div>
-  <div class="chat-box">
-    <div class="chat-header">
-      <div class="chat-avatar">SS</div>
-      <div><div class="chat-name">Sharad's AI Assistant</div><div class="chat-status">● Online</div></div>
-    </div>
-    <div class="chat-messages" id="chatMessages">
-      <div class="msg bot">Hi! I'm Sharad's AI assistant. Ask me anything about his BI consulting expertise, Power BI work, industries he's served, or availability. How can I help?</div>
-    </div>
-    <div class="quick-btns">
-      <button class="qbtn" onclick="askQuick('What industries has Sharad worked in?')">Industries</button>
-      <button class="qbtn" onclick="askQuick('What tools does Sharad use?')">Tools</button>
-      <button class="qbtn" onclick="askQuick('Is Sharad available for freelance projects?')">Availability</button>
-      <button class="qbtn" onclick="askQuick('Tell me about Sharad\u2019s Finance BI work')">Finance work</button>
-    </div>
-    <div class="chat-input-row">
-      <input class="chat-input" id="chatInput" type="text" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendChat()"/>
-      <button class="chat-send" onclick="sendChat()">Send</button>
-    </div>
-  </div>
-</div>
-</div>
-</section>
+
 
 <section id="contact" style="background:var(--bg2)">
 <div class="container">
@@ -305,16 +276,17 @@ h1{font-size:36px}
       <div class="section-title">Let's work together</div>
       <p style="color:var(--muted);margin-bottom:32px">Have a BI project in mind? I'd love to hear about your data challenges.</p>
       <div class="contact-info">
-        <div class="ci-item"><div class="ci-icon">📧</div><div><div class="ci-label">Email</div><div class="ci-val">sharad.sharma@email.com</div></div></div>
-        <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Location</div><div class="ci-val">Mumbai, India</div></div></div>
-        <div class="ci-item"><div class="ci-icon">💼</div><div><div class="ci-label">LinkedIn</div><div class="ci-val">linkedin.com/in/sharadsharma-bi</div></div></div>
+        <div class="ci-item"><div class="ci-icon">📧</div><div><div class="ci-label">Email</div><div class="ci-val">Sharad2499@gmail.com</div></div></div>
+        <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Location</div><div class="ci-val">Pune, India</div></div></div>
+        <div class="ci-item"><div class="ci-icon">💼</div><div><div class="ci-label">LinkedIn</div><div class="ci-val"><a href="https://www.linkedin.com/in/sharad-sharma" target="_blank" style="color:var(--accent)">linkedin.com/in/sharad-sharma</a></div></div></div>
       </div>
     </div>
     <div class="contact-card">
       <div class="contact-field"><label>Your Name</label><input type="text" placeholder="John Doe"/></div>
       <div class="contact-field"><label>Email</label><input type="email" placeholder="john@company.com"/></div>
       <div class="contact-field"><label>Message</label><textarea placeholder="Tell me about your project..."></textarea></div>
-      <button class="btn btn-primary" style="width:100%;padding:12px" onclick="alert('Message sent! Sharad will get back to you shortly.')">Send Message</button>
+      <button class="btn btn-primary" style="width:100%;padding:12px" onclick="sendForm()">Send Message</button>
+      <p id="form-msg" style="font-size:13px;text-align:center;margin-top:10px;display:none;color:#22c55e">✅ Message sent! Sharad will get back to you shortly.</p>
     </div>
   </div>
 </div>
@@ -329,6 +301,16 @@ const bars=[65,80,55,90,72,85,60,95,70,88];
 const bc=document.getElementById('barChart');
 bars.forEach(h=>{const b=document.createElement('div');b.className='bar';b.style.height=h+'%';bc.appendChild(b)});
 
+async function sendForm(){
+  const name=document.querySelector('.contact-card input[type=text]').value.trim();
+  const email=document.querySelector('.contact-card input[type=email]').value.trim();
+  const msg=document.querySelector('.contact-card textarea').value.trim();
+  if(!name||!email||!msg){alert('Please fill in all fields.');return;}
+  const res=await fetch('https://formspree.io/f/xyzgpnkw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,message:msg})});
+  const el=document.getElementById('form-msg');
+  if(res.ok){el.style.display='block';el.style.color='#22c55e';el.textContent='✅ Message sent! Sharad will get back to you shortly.';}
+  else{el.style.display='block';el.style.color='#f87171';el.textContent='❌ Something went wrong. Please email directly.';}
+}
 const PROFILE=`You are the AI assistant on Sharad Sharma's BI consulting portfolio website.
 Sharad Sharma is a BI Consultant and Power BI Expert based in Mumbai, India with 8+ years of experience.
 Key facts:
