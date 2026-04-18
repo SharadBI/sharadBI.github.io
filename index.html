@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sharad Sharma – BI Consultant</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0e1a;--bg2:#111827;--bg3:#1a2235;--card:#151e2e;
+--accent:#3b82f6;--accent2:#06b6d4;--text:#f1f5f9;--muted:#94a3b8;--border:#1e2d45
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px 0}
+.nav-inner{display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-size:18px;font-weight:600;color:var(--text)}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{color:var(--muted);font-size:14px;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+
+hero{display:block;min-height:100vh;display:flex;align-items:center;padding:100px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--accent);margin-bottom:20px}
+.dot{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{font-size:52px;font-weight:700;line-height:1.1;margin-bottom:16px}
+h1 span{background:linear-gradient(90deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:18px;color:var(--muted);margin-bottom:32px;max-width:460px}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 24px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#2563eb}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.stat-num{font-size:28px;font-weight:700;color:var(--accent)}
+.stat-label{font-size:13px;color:var(--muted);margin-top:4px}
+.hero-visual{display:flex;justify-content:center}
+.dashboard-mock{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;width:100%;max-width:420px}
+.dm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.dm-title{font-size:13px;font-weight:600;color:var(--muted)}
+.dm-badge{background:rgba(34,197,94,.12);color:#22c55e;font-size:11px;padding:3px 8px;border-radius:10px}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:100px;margin-bottom:16px}
+.bar{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#3b82f6,#06b6d4);opacity:.8;transition:opacity .2s}
+.bar:hover{opacity:1}
+.dm-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dm-metric{background:var(--bg3);border-radius:8px;padding:12px}
+.dm-m-val{font-size:20px;font-weight:700}
+.dm-m-lab{font-size:11px;color:var(--muted);margin-top:2px}
+.dm-m-chg{font-size:11px;color:#22c55e}
+
+section{padding:80px 0}
+.section-tag{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+.section-title{font-size:36px;font-weight:700;margin-bottom:12px}
+.section-sub{font-size:16px;color:var(--muted);max-width:560px;margin-bottom:48px}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:16px}
+.industries{display:flex;flex-direction:column;gap:12px}
+.ind-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px}
+.ind-icon{font-size:22px}
+.ind-name{font-weight:500}
+.ind-desc{font-size:13px;color:var(--muted)}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.skill-icon{font-size:28px;margin-bottom:12px}
+.skill-name{font-weight:600;margin-bottom:6px}
+.skill-desc{font-size:13px;color:var(--muted)}
+.skill-bar-wrap{margin-top:12px;background:var(--bg3);border-radius:4px;height:4px}
+.skill-bar{height:4px;border-radius:4px;background:linear-gradient(90deg,#3b82f6,#06b6d4)}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:border-color .2s}
+.proj-card:hover{border-color:var(--accent)}
+.proj-tag{display:inline-block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:12px}
+.proj-title{font-size:18px;font-weight:600;margin-bottom:8px}
+.proj-desc{font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.7}
+.proj-metrics{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.proj-metric{text-align:center}
+.proj-metric-val{font-size:22px;font-weight:700;color:var(--accent2)}
+.proj-metric-lab{font-size:11px;color:var(--muted)}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--bg3);border:1px solid var(--border);border-radius:6px;font-size:12px;padding:4px 10px;color:var(--muted)}
+
+#chat-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.chat-wrap{max-width:720px;margin:0 auto}
+.chat-intro{text-align:center;margin-bottom:32px}
+.chat-box{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.chat-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.chat-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff}
+.chat-name{font-weight:600;font-size:14px}
+.chat-status{font-size:12px;color:#22c55e}
+.chat-messages{padding:20px;min-height:240px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.msg{max-width:80%;padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.6}
+.msg.bot{background:var(--bg3);border:1px solid var(--border);align-self:flex-start;border-radius:4px 12px 12px 12px}
+.msg.user{background:var(--accent);color:#fff;align-self:flex-end;border-radius:12px 4px 12px 12px}
+.msg.typing{color:var(--muted);font-style:italic}
+.chat-input-row{display:flex;gap:10px;padding:16px 20px;border-top:1px solid var(--border)}
+.chat-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:14px;outline:none}
+.chat-input:focus{border-color:var(--accent)}
+.chat-send{background:var(--accent);border:none;border-radius:8px;padding:10px 18px;color:#fff;font-size:14px;cursor:pointer;font-weight:500}
+.chat-send:hover{background:#2563eb}
+.quick-btns{padding:0 20px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.qbtn{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:6px 14px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .2s}
+.qbtn:hover{border-color:var(--accent);color:var(--accent)}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px}
+.contact-field{margin-bottom:16px}
+.contact-field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+.contact-field input,.contact-field textarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:14px;outline:none;font-family:inherit}
+.contact-field textarea{height:100px;resize:vertical}
+.contact-field input:focus,.contact-field textarea:focus{border-color:var(--accent)}
+.contact-info{display:flex;flex-direction:column;gap:16px}
+.ci-item{display:flex;align-items:center;gap:14px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:10px}
+.ci-icon{font-size:20px;width:40px;text-align:center}
+.ci-label{font-size:12px;color:var(--muted)}
+.ci-val{font-weight:500}
+
+footer{text-align:center;padding:32px;border-top:1px solid var(--border);color:var(--muted);font-size:14px}
+
+@media(max-width:768px){
+.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+.hero-visual{display:none}
+h1{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="container nav-inner">
+  <div class="nav-logo">Sharad<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#chat">AI Assistant</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+</nav>
+
+<hero id="home">
+<div class="container">
+<div class="hero-grid">
+  <div>
+    <div class="hero-badge"><span class="dot"></span> Available for projects</div>
+    <h1>Sharad<br><span>Sharma</span></h1>
+    <p class="hero-sub">BI Consultant & Power BI Expert — transforming raw data into strategic business intelligence across Sales, Workforce & Finance.</p>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+      <button class="btn btn-outline" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Work</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-num">8+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-card"><div class="stat-num">40+</div><div class="stat-label">Dashboards Built</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Industries</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="dashboard-mock">
+      <div class="dm-header">
+        <span class="dm-title">Sales Performance</span>
+        <span class="dm-badge">Live</span>
+      </div>
+      <div class="bar-chart" id="barChart"></div>
+      <div class="dm-metrics">
+        <div class="dm-metric"><div class="dm-m-val" style="color:#3b82f6">₹4.2Cr</div><div class="dm-m-lab">Revenue MTD</div><div class="dm-m-chg">↑ 18%</div></div>
+        <div class="dm-metric"><div class="dm-m-val" style="color:#06b6d4">94%</div><div class="dm-m-lab">Target Achieved</div><div class="dm-m-chg">↑ 6%</div></div>
+        <div class="dm-metric"><div class="dm-m-val" style="color:#a78bfa">312</div><div class="dm-m-lab">Active Accounts</div><div class="dm-m-chg">↑ 24</div></div>
+        <div class="dm-metric"><div class="dm-m-val" style="color:#34d399">2.1d</div><div class="dm-m-lab">Avg Cycle Time</div><div class="dm-m-chg">↓ 0.4d</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</hero>
+
+<section id="about">
+<div class="container">
+  <div class="about-grid">
+    <div>
+      <div class="section-tag">About Me</div>
+      <div class="section-title">Data-driven decisions start here</div>
+      <div class="about-text">
+        <p>With over 8 years of hands-on experience as a BI Consultant, I specialize in building enterprise-grade Power BI solutions that deliver real business impact. I translate complex data into clear, actionable insights.</p>
+        <p>My strength lies in understanding the unique data challenges of each industry — from sales pipeline analytics to workforce planning and financial forecasting — and designing dashboards that empower decision-makers.</p>
+        <p>I work closely with stakeholders to ensure every report tells the right story at the right time.</p>
+      </div>
+    </div>
+    <div>
+      <div class="section-tag" style="margin-bottom:20px">Industries</div>
+      <div class="industries">
+        <div class="ind-item"><div class="ind-icon">📈</div><div><div class="ind-name">Business Sales</div><div class="ind-desc">Pipeline analytics, revenue forecasting, KPI dashboards</div></div></div>
+        <div class="ind-item"><div class="ind-icon">👥</div><div><div class="ind-name">Workforce Management</div><div class="ind-desc">Headcount planning, attrition, productivity metrics</div></div></div>
+        <div class="ind-item"><div class="ind-icon">💰</div><div><div class="ind-name">Finance</div><div class="ind-desc">P&L reporting, budget vs actuals, cash flow analysis</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="skills" style="background:var(--bg2)">
+<div class="container">
+  <div class="section-tag">Skills & Tools</div>
+  <div class="section-title">My Toolkit</div>
+  <p class="section-sub">Deep expertise across the full BI stack — from data extraction to visual storytelling.</p>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">Power BI</div><div class="skill-desc">Reports, dashboards, paginated reports, service deployment</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:97%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🔢</div><div class="skill-name">DAX</div><div class="skill-desc">Complex measures, calculated columns, time intelligence</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🗄️</div><div class="skill-name">SQL</div><div class="skill-desc">Query optimization, stored procedures, data modeling</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">⚡</div><div class="skill-name">Power Query (M)</div><div class="skill-desc">ETL, data transformation, advanced data shaping</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🐍</div><div class="skill-name">Python</div><div class="skill-desc">Data prep, automation scripts, pandas & visualization</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🏗️</div><div class="skill-name">Data Modeling</div><div class="skill-desc">Star schema, snowflake, relationships, performance tuning</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div></div>
+  </div>
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+  <div class="section-tag">Case Studies</div>
+  <div class="section-title">Featured Projects</div>
+  <p class="section-sub">Real-world BI solutions delivered across three industries.</p>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-tag">Business Sales</div>
+      <div class="proj-title">National Sales Intelligence Platform</div>
+      <div class="proj-desc">Built a unified Power BI platform integrating CRM, ERP, and market data for a 500-person sales org. Enabled real-time pipeline visibility and regional performance tracking.</div>
+      <div class="proj-metrics">
+        <div class="proj-metric"><div class="proj-metric-val">35%</div><div class="proj-metric-lab">Faster decisions</div></div>
+        <div class="proj-metric"><div class="proj-metric-val">12+</div><div class="proj-metric-lab">KPI dashboards</div></div>
+        <div class="proj-metric"><div class="proj-metric-val">18%</div><div class="proj-metric-lab">Revenue lift</div></div>
+      </div>
+      <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Salesforce</span><span class="tag">SQL</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-tag">Workforce Management</div>
+      <div class="proj-title">Workforce Analytics & Attrition Model</div>
+      <div class="proj-desc">Designed an end-to-end workforce dashboard for a 2000+ employee company. Included predictive attrition indicators, headcount planning, and HR performance metrics.</div>
+      <div class="proj-metrics">
+        <div class="proj-metric"><div class="proj-metric-val">22%</div><div class="proj-metric-lab">Attrition reduced</div></div>
+        <div class="proj-metric"><div class="proj-metric-val">8</div><div class="proj-metric-lab">Reports built</div></div>
+        <div class="proj-metric"><div class="proj-metric-val">100%</div><div class="proj-metric-lab">HR adoption</div></div>
+      </div>
+      <div class="tags"><span class="tag">Power BI</span><span class="tag">Python</span><span class="tag">Power Query</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-tag">Finance</div>
+      <div class="proj-title">Financial Reporting & Budget Tracker</div>
+      <div class="proj-desc">Replaced manual Excel-based reporting with automated Power BI financial reports. Delivered P&L, budget vs actuals, and cash flow dashboards refreshed daily from ERP data.</div>
+      <div class="proj-metrics">
+        <div class="proj-metric"><div class="proj-metric-val">80%</div><div class="proj-metric-lab">Time saved</div></div>
+        <div class="proj-metric"><div class="proj-metric-val">6</div><div class="proj-metric-lab">Exec dashboards</div></div>
+        <div class="proj-metric"><div class="proj-metric-val">99%</div><div class="proj-metric-lab">Data accuracy</div></div>
+      </div>
+      <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">SAP</span><span class="tag">SQL</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="chat">
+<div class="container">
+<div class="chat-wrap">
+  <div class="chat-intro">
+    <div class="section-tag" style="text-align:center">AI Assistant</div>
+    <div class="section-title" style="text-align:center">Ask about Sharad</div>
+    <p style="color:var(--muted);margin-top:8px">Get instant answers about Sharad's expertise, availability, and past work.</p>
+  </div>
+  <div class="chat-box">
+    <div class="chat-header">
+      <div class="chat-avatar">SS</div>
+      <div><div class="chat-name">Sharad's AI Assistant</div><div class="chat-status">● Online</div></div>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg bot">Hi! I'm Sharad's AI assistant. Ask me anything about his BI consulting expertise, Power BI work, industries he's served, or availability. How can I help?</div>
+    </div>
+    <div class="quick-btns">
+      <button class="qbtn" onclick="askQuick('What industries has Sharad worked in?')">Industries</button>
+      <button class="qbtn" onclick="askQuick('What tools does Sharad use?')">Tools</button>
+      <button class="qbtn" onclick="askQuick('Is Sharad available for freelance projects?')">Availability</button>
+      <button class="qbtn" onclick="askQuick('Tell me about Sharad\u2019s Finance BI work')">Finance work</button>
+    </div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="chatInput" type="text" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendChat()"/>
+      <button class="chat-send" onclick="sendChat()">Send</button>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+<section id="contact" style="background:var(--bg2)">
+<div class="container">
+  <div class="contact-grid">
+    <div>
+      <div class="section-tag">Contact</div>
+      <div class="section-title">Let's work together</div>
+      <p style="color:var(--muted);margin-bottom:32px">Have a BI project in mind? I'd love to hear about your data challenges.</p>
+      <div class="contact-info">
+        <div class="ci-item"><div class="ci-icon">📧</div><div><div class="ci-label">Email</div><div class="ci-val">sharad.sharma@email.com</div></div></div>
+        <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Location</div><div class="ci-val">Mumbai, India</div></div></div>
+        <div class="ci-item"><div class="ci-icon">💼</div><div><div class="ci-label">LinkedIn</div><div class="ci-val">linkedin.com/in/sharadsharma-bi</div></div></div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-field"><label>Your Name</label><input type="text" placeholder="John Doe"/></div>
+      <div class="contact-field"><label>Email</label><input type="email" placeholder="john@company.com"/></div>
+      <div class="contact-field"><label>Message</label><textarea placeholder="Tell me about your project..."></textarea></div>
+      <button class="btn btn-primary" style="width:100%;padding:12px" onclick="alert('Message sent! Sharad will get back to you shortly.')">Send Message</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <p>© 2025 Sharad Sharma · BI Consultant & Power BI Expert · Mumbai, India</p>
+</footer>
+
+<script>
+const bars=[65,80,55,90,72,85,60,95,70,88];
+const bc=document.getElementById('barChart');
+bars.forEach(h=>{const b=document.createElement('div');b.className='bar';b.style.height=h+'%';bc.appendChild(b)});
+
+const PROFILE=`You are the AI assistant on Sharad Sharma's BI consulting portfolio website.
+Sharad Sharma is a BI Consultant and Power BI Expert based in Mumbai, India with 8+ years of experience.
+Key facts:
+- Expert in Power BI, DAX, SQL, Power Query (M), Python, Data Modeling
+- Industries: Business Sales (pipeline analytics, revenue forecasting, KPI dashboards), Workforce Management (headcount planning, attrition, productivity), Finance (P&L, budget vs actuals, cash flow)
+- Notable projects: National Sales Intelligence Platform (35% faster decisions, 18% revenue lift), Workforce Analytics & Attrition Model (22% attrition reduction), Financial Reporting & Budget Tracker (80% time saved)
+- Available for freelance and contract BI projects
+- Contact: sharad.sharma@email.com, Mumbai India
+Answer questions about Sharad's expertise, past work, tools, industries, and availability. Be concise, professional, and helpful. Keep replies under 100 words.`;
+
+async function callClaude(userMsg){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:1000,
+      system:PROFILE,
+      messages:[{role:'user',content:userMsg}]
+    })
+  });
+  const d=await r.json();
+  return d.content&&d.content[0]?d.content[0].text:'Sorry, I could not get a response right now.';
+}
+
+function addMsg(txt,type){
+  const box=document.getElementById('chatMessages');
+  const m=document.createElement('div');
+  m.className='msg '+type;
+  m.textContent=txt;
+  box.appendChild(m);
+  box.scrollTop=box.scrollHeight;
+  return m;
+}
+
+async function sendChat(){
+  const inp=document.getElementById('chatInput');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  inp.value='';
+  addMsg(txt,'user');
+  const typing=addMsg('Typing...','bot typing');
+  try{
+    const reply=await callClaude(txt);
+    typing.textContent=reply;
+    typing.classList.remove('typing');
+  }catch(e){
+    typing.textContent='Sorry, something went wrong. Please try again.';
+    typing.classList.remove('typing');
+  }
+}
+
+function askQuick(q){
+  document.getElementById('chatInput').value=q;
+  sendChat();
+}
+</script>
+</body>
+</html>
